@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "billing-service"
+		},
+		{
+			"path": "client-service"
+		}
+	],
+	"settings": {}
+}
