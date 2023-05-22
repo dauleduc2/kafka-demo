@@ -47,7 +47,7 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
     await this.producer.connect();
   }
 
-  async produce(record: ProducerRecord) {
+  async produceWithRegistry(record: ProducerRecord) {
     try {
       const encodedValue = await this.registry.encode(
         this.registryId,
@@ -58,6 +58,22 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
         messages: [
           {
             value: encodedValue,
+          },
+        ],
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async produce(record: ProducerRecord) {
+    try {
+      return await this.producer.send({
+        ...record,
+        messages: [
+          {
+            key: record.messages[0].key,
+            value: record.messages[0].value,
           },
         ],
       });

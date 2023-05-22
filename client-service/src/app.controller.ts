@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 export class ProduceMessageDTO {
+  topic: string;
   value: string;
   key: string;
 }
@@ -11,8 +12,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  produce(@Body() { value, key }: ProduceMessageDTO) {
-    return this.appService.produceMessage({
+  produce(@Body() { topic, value, key }: ProduceMessageDTO) {
+    return this.appService.produceMessage(topic, {
       value,
       key,
     });

@@ -6,9 +6,9 @@ import { Message } from 'kafkajs';
 export class AppService {
   constructor(private readonly producerService: ProducerService) {}
 
-  async produceMessage(message: Message) {
+  async produceMessage(topic: string, message: Message) {
     return await this.producerService.produce({
-      topic: 'two_partition',
+      topic,
       messages: [message],
     });
   }

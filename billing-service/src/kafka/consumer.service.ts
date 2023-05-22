@@ -48,7 +48,7 @@ export class ConsumerService implements OnApplicationShutdown {
     });
     await consumer.connect();
     await consumer.subscribe({ topic, fromBeginning: true });
-    consumer.run({ autoCommit: false, ...config });
+    consumer.run({ ...config });
     consumer.seek({ topic, partition, offset });
   }
 
