@@ -13,22 +13,23 @@ import * as path from 'path';
 @Injectable()
 export class ProducerService implements OnModuleInit, OnApplicationShutdown {
   private readonly registry = new SchemaRegistry({
-    host: 'https://psrc-znpo0.ap-southeast-2.aws.confluent.cloud',
+    host: 'https://psrc-10wgj.ap-southeast-2.aws.confluent.cloud',
     auth: {
-      username: 'V7XDP3DGHUDNAERW',
+      username: 'UESJT6BVUOPSIZQV',
       password:
-        'N5JgVGWrPqENmrrX9KegCvsZlRRCgie8dtaouk7psu0nagkIxY36wllW3hin8dNK',
+        'QWcdHqGzrzT4m1SMFGcbSZjMQfhpdlISj9M/M2PV558jca6QjFzqMhJJimi/1cPJ',
     },
     clientId: 'demo',
   });
+
   private readonly kafka = new Kafka({
     clientId: 'demo',
-    brokers: ['pkc-8jz80.ap-southeast-1.aws.confluent.cloud:9092'],
+    brokers: ['pkc-ldvr1.asia-southeast1.gcp.confluent.cloud:9092'],
     ssl: true,
     sasl: {
-      username: 'QOEZ4O4YBX26EAXP',
+      username: 'GQPQ3OIAKR2UVZH4',
       password:
-        'q/6IxrQLv2G2zOI/lxXN3EdGkA8FyoKfIA9V2cSgQIyJa+/BggRHlAMAnKgJfEDp',
+        'g/TeVSTzGq3s7GHIYmDlQUUOsw2dgPfVy1APv0QQGquf5DvlSY1naiB+8o34t29s',
       mechanism: 'plain',
     },
   });
@@ -38,7 +39,7 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
   private registryId;
   async onModuleInit() {
     this.schema = await readAVSCAsync(
-      path.join(__dirname, '..', '..', 'schema.avsc'),
+      path.join(__dirname, '..', '..', 'demo_schema.avsc'),
     );
 
     const { id } = await this.registry.register(this.schema);
@@ -53,7 +54,7 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
         this.registryId,
         record.messages[0].value,
       );
-      await this.producer.send({
+      return await this.producer.send({
         ...record,
         messages: [
           {
@@ -73,7 +74,7 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
         messages: [
           {
             key: record.messages[0].key,
-            value: record.messages[0].value,
+            value: JSON.stringify(record.messages[0].value),
           },
         ],
       });

@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 
 export class ProduceMessageDTO {
   topic: string;
-  value: string;
+  value: any;
   key: string;
 }
 
@@ -11,9 +11,17 @@ export class ProduceMessageDTO {
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('/simple')
   produce(@Body() { topic, value, key }: ProduceMessageDTO) {
     return this.appService.produceMessage(topic, {
+      value,
+      key,
+    });
+  }
+
+  @Get('/registry')
+  produceWithRegistry(@Body() { topic, value, key }: ProduceMessageDTO) {
+    return this.appService.produceMessageWithRegistry(topic, {
       value,
       key,
     });

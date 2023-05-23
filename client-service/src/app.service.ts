@@ -12,4 +12,11 @@ export class AppService {
       messages: [message],
     });
   }
+
+  async produceMessageWithRegistry(topic: string, message: Message) {
+    return await this.producerService.produceWithRegistry({
+      topic,
+      messages: [message],
+    });
+  }
 }

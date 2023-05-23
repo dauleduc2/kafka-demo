@@ -1,0 +1,20 @@
+{
+  "doc": "Sample schema to help you get started.",
+  "fields": [
+    {
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "name": "totalPrice",
+      "type": "double"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    }
+  ],
+  "name": "order_with_registry",
+  "namespace": "com.mycorp.mynamespace",
+  "type": "record"
+}
