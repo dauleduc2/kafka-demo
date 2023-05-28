@@ -14,12 +14,12 @@ import {
 export class ConsumerService implements OnApplicationShutdown {
   private readonly kafka = new Kafka({
     clientId: 'demo',
-    brokers: ['pkc-ldvr1.asia-southeast1.gcp.confluent.cloud:9092'],
+    brokers: ['pkc-4j8dq.southeastasia.azure.confluent.cloud:9092'],
     ssl: true,
     sasl: {
-      username: 'GQPQ3OIAKR2UVZH4',
+      username: '47UTB7V3KQQDXHJR',
       password:
-        'g/TeVSTzGq3s7GHIYmDlQUUOsw2dgPfVy1APv0QQGquf5DvlSY1naiB+8o34t29s',
+        'xN5dc2qr74RvYCxCRCRTl7u4tO3jvh9H7UjTaZPjXY1LTOS+tIFEeLukN/LxmX+X',
       mechanism: 'plain',
     },
   });

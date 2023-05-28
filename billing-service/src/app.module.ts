@@ -8,6 +8,6 @@ import { CreateOrderConsumerWithRegistry } from './createOderWithRegistry.consum
 @Module({
   imports: [KafkaModule],
   controllers: [AppController],
-  providers: [AppService, CreateOrderConsumerWithRegistry],
+  providers: [AppService, CreateOrderConsumer],
 })
 export class AppModule {}

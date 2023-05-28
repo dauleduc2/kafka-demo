@@ -6,11 +6,11 @@ import { SchemaRegistry } from '@kafkajs/confluent-schema-registry';
 export class CreateOrderConsumerWithRegistry implements OnModuleInit {
   constructor(private readonly consumerService: ConsumerService) {}
   private readonly registry = new SchemaRegistry({
-    host: 'https://psrc-10wgj.ap-southeast-2.aws.confluent.cloud',
+    host: 'https://psrc-e8vk0.southeastasia.azure.confluent.cloud',
     auth: {
-      username: 'UESJT6BVUOPSIZQV',
+      username: 'F6ROZMFWSQKIBMLR',
       password:
-        'QWcdHqGzrzT4m1SMFGcbSZjMQfhpdlISj9M/M2PV558jca6QjFzqMhJJimi/1cPJ',
+        'fro+F3ch2O0LOqGXun2Om3ocyDxToL1y5aaM/A1fcKj3LuLg6IYuewzLoNU5dGq+',
     },
     clientId: 'demo',
   });
@@ -25,6 +25,7 @@ export class CreateOrderConsumerWithRegistry implements OnModuleInit {
               const decodedValue = await this.registry.decode(message.value);
               console.log({
                 value: decodedValue,
+                beforeDecode: message.value,
                 topic: topic.toString(),
                 partition: partition.toString(),
               });

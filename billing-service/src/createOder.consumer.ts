@@ -9,6 +9,7 @@ export class CreateOrderConsumer implements OnModuleInit {
     await this.consumerService.consume(
       { topic: 'simple_order', fromBeginning: true },
       {
+        autoCommit: false,
         eachMessage: async ({ topic, partition, message }) => {
           await new Promise((resolve) =>
             setTimeout(async () => {
