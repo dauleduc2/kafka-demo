@@ -9,8 +9,9 @@ export class CreateOrderConsumer implements OnModuleInit {
     await this.consumerService.consume(
       { topic: 'simple_order' },
       {
+        autoCommit: true,
         eachMessage: async ({ topic, partition, message }) => {
-          await new Promise((resolve) =>
+          await new Promise((resolve) => {
             setTimeout(async () => {
               console.log({
                 key: message.key?.toString(),
@@ -19,8 +20,8 @@ export class CreateOrderConsumer implements OnModuleInit {
                 partition: partition.toString(),
               });
               resolve('done');
-            }, 500),
-          );
+            }, 500);
+          });
         },
       },
     );

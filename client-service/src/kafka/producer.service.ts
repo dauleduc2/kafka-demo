@@ -41,8 +41,12 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
     this.schema = await readAVSCAsync(
       path.join(__dirname, '..', '..', 'demo_schema.avsc'),
     );
+    const id = await this.registry.getLatestSchemaId(
+      'order_with_registry-value',
+    );
 
-    const { id } = await this.registry.register(this.schema);
+    console.log({ id });
+    // const { id } = await this.registry.register(this.schema);
     this.registryId = id;
 
     await this.producer.connect();

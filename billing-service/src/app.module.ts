@@ -4,10 +4,11 @@ import { AppService } from './app.service';
 import { KafkaModule } from './kafka/kafka.module';
 import { CreateOrderConsumer } from './createOder.consumer';
 import { CreateOrderConsumerWithRegistry } from './createOderWithRegistry.consumer';
+import { CreateOrderConsumerFromStart } from './createOderFromStart.consumer';
 
 @Module({
   imports: [KafkaModule],
   controllers: [AppController],
-  providers: [AppService, CreateOrderConsumer],
+  providers: [AppService, CreateOrderConsumerWithRegistry],
 })
 export class AppModule {}

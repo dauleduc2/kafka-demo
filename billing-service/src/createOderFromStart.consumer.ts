@@ -15,7 +15,7 @@ export class CreateOrderConsumerFromStart implements OnModuleInit {
             setTimeout(async () => {
               console.log({
                 key: message.key?.toString(),
-                value: message.value.toString(),
+                value: JSON.parse(message.value.toString()),
                 topic: topic.toString(),
                 partition: partition.toString(),
               });
@@ -27,14 +27,18 @@ export class CreateOrderConsumerFromStart implements OnModuleInit {
     );
 
     // await this.consumerService.seek('one_partition', 0, '0', {
-    //   eachBatch: async ({ batch, heartbeat }) => {
+    //   eachBatch: async ({ batch }) => {
     //     for (const message of batch.messages) {
-    //       console.log({
-    //         value: message.value.toString(),
-    //         topic: batch.topic,
-    //         partition: batch.partition,
-    //       });
-    //       heartbeat();
+    //       await new Promise((resolve) =>
+    //         setTimeout(async () => {
+    //           console.log({
+    //             value: JSON.parse(message.value.toString()),
+    //             topic: batch.topic,
+    //             partition: batch.partition,
+    //           });
+    //           resolve('done');
+    //         }, 500),
+    //       );
     //     }
     //   },
     // });
